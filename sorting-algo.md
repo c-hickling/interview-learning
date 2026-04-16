@@ -305,23 +305,51 @@ def insertion_sort(arr: list) -> None:
 
 ### Description
 
+Divide the array into a sorted and unsorted portion. On each pass, find the minimum element in the unsorted portion and swap it into the next position of the sorted portion. Repeat until the unsorted portion is empty.
 
 ### Advantages
 
-
+ - Simple to implement.
+ - In-place — O(1) extra space.
+ - Minimises the number of swaps — at most n-1 swaps regardless of input. Useful when write operations are expensive.
 
 ### When Should I use it
 
-
+ - When the cost of swapping/writing is significantly higher than the cost of reading (e.g. flash memory).
+ - Small arrays where simplicity matters more than performance.
 
 ### Optimisation
 
-
+ - **Double-ended selection sort** — find both the minimum and maximum in each pass, placing them at the start and end simultaneously. Halves the number of passes.
 
 ### Complexity
 
+| Case | Time | Space |
+|---|---|---|
+| Best | O(n²) | O(1) |
+| Average | O(n²) | O(1) |
+| Worst | O(n²) | O(1) |
 
+All cases are O(n²) because the inner loop always scans the full remaining unsorted portion regardless of the input — there is no early exit. This makes it generally worse than insertion sort, which can short-circuit on sorted input.
 
 ### Code Snippets
+
+```python
+def selection_sort(arr: list) -> None:
+    """
+    Sort arr in-place using selection sort.
+    On each pass, find the minimum element in the unsorted portion
+    and swap it into its final sorted position.
+    """
+    n = len(arr)
+    for i in range(n):
+        # Assume the first unsorted element is the minimum
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        # Swap the found minimum into its sorted position
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+```
 
 
