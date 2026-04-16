@@ -49,15 +49,48 @@ O (1) space complexity if we do not create any new lists and just shift the wind
 
 ### Description
 
+Two pointers maintains two indices into a sequence that move toward (or away from) each other, or in the same direction at different speeds. This avoids a nested loop and reduces an O(n²) brute-force scan down to O(n).
+
 ### When should I use it
+
+Use it on sorted arrays or strings when you need to find a pair (or triplet) satisfying a condition — e.g. two numbers that sum to a target, or checking whether a string is a palindrome. Also used for in-place operations like removing duplicates or partitioning an array.
 
 ### Code Snippet
 
 ``` python
+def two_sum_sorted(numbers: list[int], target: int) -> tuple[int, int]:
+    """
+    Find two indices whose values sum to target in a sorted list.
+    Uses opposite-end pointers: if the sum is too large shrink from
+    the right; if too small grow from the left.
 
+    Args:
+        numbers: Sorted list of integers
+        target: The desired sum
+
+    Returns:
+        Tuple of the two indices (1-indexed), or (-1, -1) if not found
+    """
+    left, right = 0, len(numbers) - 1
+
+    while left < right:
+        current_sum = numbers[left] + numbers[right]
+
+        if current_sum == target:
+            return (left + 1, right + 1)
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+
+    return (-1, -1)
 ```
 
 ### Complexity
+
+O(n) time complexity — each pointer moves at most n steps in total.
+
+O(1) space complexity — no extra data structures needed.
 
 ## Sliding Window
 
