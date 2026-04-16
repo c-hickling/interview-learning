@@ -117,24 +117,75 @@ def quick_sort_optimised(arr: list, low: int = 0, high: int = None) -> None:
 
 ### Description
 
+Divide array into sub-arrays until each array contains a single element. Merge two arrays by iterating through them building a new merged array
 
 ### Advantages
 
-
+ - Stable sort — equal elements preserve their original relative order.
+ - Guaranteed O(n log n) in all cases; no worst-case degradation like Quick Sort.
+ - Well-suited for linked lists (merge is cheap, no random access needed).
+ - Naturally parallelisable — independent sub-arrays can be sorted concurrently.
 
 ### When Should I use it
 
-
+ - When stability is required (e.g. sorting records that are already partially ordered by another field).
+ - When guaranteed worst-case performance matters more than average-case speed.
+ - When sorting linked lists or external data (e.g. data too large to fit in memory — merge sort maps well to disk-based sorting).
 
 ### Optimisation
 
-
+ - **Bottom-up merge sort** — iterative version avoids recursion overhead and call-stack depth.
+ - **Timsort** — Python's built-in `sorted()` uses Timsort, which detects natural runs in the input and uses insertion sort on small sub-arrays (threshold ~32–64 elements) before merging. This makes it very fast on real-world nearly-sorted data.
+ - **In-place merging** — avoids the O(n) auxiliary space cost, but the merge step becomes significantly more complex.
 
 ### Complexity
 
+| Case | Time | Space |
+|---|---|---|
+| Best | O(n log n) | O(n) |
+| Average | O(n log n) | O(n) |
+| Worst | O(n log n) | O(n) |
 
+Unlike Quick Sort, Merge Sort always splits evenly, so all three cases are identical. The O(n) space cost comes from the temporary arrays used during the merge step.
 
 ### Code Snippets
+
+```python
+def merge_sort(arr: list) -> list:
+    """
+    Recursively split the array in half, sort each half, then merge.
+    Returns a new sorted list — does not sort in-place.
+    """
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return _merge(left, right)
+
+
+def _merge(left: list, right: list) -> list:
+    """
+    Merge two sorted lists into one sorted list.
+    Walk both lists with two pointers, always picking the smaller element.
+    """
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:   # <= preserves stability
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    # Append any remaining elements (at most one side will have leftovers)
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+```
 
 
 
