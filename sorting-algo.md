@@ -248,24 +248,56 @@ def bubble_sort(arr: list) -> None:
 
 ### Description
 
+Build a sorted sub-array one element at a time. For each new element, shift all larger elements in the sorted portion one position to the right, then insert the new element into the gap left behind.
 
 ### Advantages
 
-
+ - Simple to implement.
+ - Stable sort — equal elements are never moved past each other.
+ - In-place — O(1) extra space.
+ - Very efficient on small or nearly-sorted arrays; used internally by Timsort for small sub-arrays.
+ - Online algorithm — can sort a list as it receives elements one at a time.
 
 ### When Should I use it
 
-
+ - Small arrays (typically n < 20) where overhead of recursive algorithms is not worth it.
+ - Nearly-sorted data — each element only needs to move a short distance.
+ - As the base case in hybrid sorts like Timsort or Introsort.
 
 ### Optimisation
 
-
+ - **Binary search insertion** — use binary search to find the correct insertion position in O(log n) comparisons, though shifting still costs O(n) so overall time stays O(n²).
+ - **Shell sort** — generalisation of insertion sort that allows swapping elements far apart first, reducing the total amount of shifting needed.
 
 ### Complexity
 
+| Case | Time | Space |
+|---|---|---|
+| Best (already sorted) | O(n) | O(1) |
+| Average | O(n²) | O(1) |
+| Worst (reverse sorted) | O(n²) | O(1) |
 
+Best case is O(n) because each element only needs one comparison to confirm it is already in the right position — no shifts required.
 
 ### Code Snippets
+
+```python
+def insertion_sort(arr: list) -> None:
+    """
+    Sort arr in-place using insertion sort.
+    Maintains a sorted left portion, inserting each new element into its
+    correct position by shifting larger elements one step to the right.
+    """
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        # Shift elements of the sorted portion that are greater than key
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        # Insert key into the gap left by shifting
+        arr[j + 1] = key
+```
 
 
 
