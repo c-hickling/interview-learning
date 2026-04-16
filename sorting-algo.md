@@ -193,24 +193,54 @@ def _merge(left: list, right: list) -> list:
 
 ### Description
 
+Repeatedly step through the array, comparing adjacent pairs and swapping them if they are in the wrong order. Each full pass bubbles the largest unsorted element to its correct position at the end. Repeat until no swaps occur.
 
 ### Advantages
 
-
+ - Simple to implement and understand.
+ - Stable sort — equal elements are never swapped, so relative order is preserved.
+ - Detects an already-sorted array in O(n) with the early-exit optimisation.
 
 ### When Should I use it
 
-
+ - Rarely in practice — mainly for teaching purposes.
+ - When the input is known to be nearly sorted and you need a simple in-place stable sort.
 
 ### Optimisation
 
-
+ - **Early exit** — track whether any swap occurred during a pass. If none did, the array is already sorted and you can stop early (best case becomes O(n)).
+ - **Shrinking upper bound** — after each pass, the last `i` elements are guaranteed sorted, so shorten the inner loop by one each time.
 
 ### Complexity
 
+| Case | Time | Space |
+|---|---|---|
+| Best (already sorted) | O(n) | O(1) |
+| Average | O(n²) | O(1) |
+| Worst (reverse sorted) | O(n²) | O(1) |
 
+The O(1) space is because sorting is done in-place with only a temporary swap variable.
 
 ### Code Snippets
+
+```python
+def bubble_sort(arr: list) -> None:
+    """
+    Sort arr in-place using bubble sort.
+    Each pass bubbles the largest unsorted element to its final position.
+    Exits early if a pass completes with no swaps (array is already sorted).
+    """
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        # Inner loop shrinks each pass — last i elements are already sorted
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break  # No swaps means the array is sorted — exit early
+```
 
 
 
