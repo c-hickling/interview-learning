@@ -125,17 +125,49 @@ O(V + E) time complexity where V is vertices and E is edges.
 
 O(V) space complexity for the visited set and queue.
 
-## Depth First Search
+## Depth First Search (DFS)
 
 ### Description
 
+A recursive backtracking algorithm that leverages the stack to move through a tree structure.
+
 ### When should I use it
+
+It should be used to determine if a path exists between two nodes or to perform an exhaustive search of a tree. It should also be used for solving puzzles (such as mazes or the N-Queens problem) when you need to be able to go deep down a particular path and then backtrack when you get to a point of failure.  
 
 ### Code Snippet
 
 ``` python
+def dfs(graph: dict, start_node: str) -> list:
+    """
+    Generic DFS algorithm for traversing a graph.
+    
+    Args:
+        graph: Dictionary representing adjacency list {node: [neighbors]}
+        start_node: The node to start traversal from
+    
+    Returns:
+        List of nodes in DFS order
+    """
+    visited = set()
+    result = []
 
+    def perform_search(node: str) -> None:
+        visited.add(node)
+        result.append(node)
+
+        # Recurse into each unvisited neighbour
+        if node in graph:
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    perform_search(neighbor)
+
+    perform_search(start_node)
+    return result
 ```
 
 ### Complexity
 
+O(V + E) time complexity where V is vertices and E is edges.
+
+O(V) space complexity for the visited set and the implicit call stack (bounded by max depth).
