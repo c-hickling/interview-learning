@@ -63,15 +63,48 @@ O (1) space complexity if we do not create any new lists and just shift the wind
 
 ### Description
 
+A subset of the two pointers algorithm where a left and right pointer define a window over a sequence. The window expands by advancing the right pointer and shrinks by advancing the left pointer, avoiding the need to reprocess elements. The window can be fixed length or variable length.
+
 ### When should I use it
+
+Any problem that asks for contiguous elements in a string or an array. For example, max/min sum of a contiguous subarray of size k (fixed window) or longest subarray satisfying a constraint (variable window).
 
 ### Code Snippet
 
 ``` python
+def longest_unique_substring(s: str) -> int:
+    """
+    Find the length of the longest substring without repeating characters.
+    Uses a variable-size sliding window — expand rhs until a duplicate is
+    found, then shrink from lhs until the window is valid again.
 
+    Args:
+        s: Input string
+
+    Returns:
+        Length of the longest substring with all unique characters
+    """
+    seen = set()
+    lhs = 0
+    best = 0
+
+    for rhs in range(len(s)):
+        # Shrink from the left until the duplicate is evicted
+        while s[rhs] in seen:
+            seen.remove(s[lhs])
+            lhs += 1
+
+        seen.add(s[rhs])
+        best = max(best, rhs - lhs + 1)
+
+    return best
 ```
 
 ### Complexity
+
+O(n) time complexity — each character is added and removed from the set at most once.
+
+O(k) space complexity where k is the size of the character set (bounded by 26 for lowercase alpha).
 
 ## Breadth First Search (BFS)
 
