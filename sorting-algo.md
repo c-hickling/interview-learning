@@ -112,3 +112,103 @@ def quick_sort_optimised(arr: list, low: int = 0, high: int = None) -> None:
         quick_sort_optimised(arr, low, pivot_idx - 1)
         quick_sort_optimised(arr, pivot_idx + 1, high)
 ```
+
+## Merge Sort
+
+### Description
+
+
+### Advantages
+
+
+
+### When Should I use it
+
+
+
+### Optimisation
+
+
+
+### Complexity
+
+
+
+### Code Snippets
+
+
+
+## Bubble Sort
+
+### Description
+
+
+### Advantages
+
+
+
+### When Should I use it
+
+
+
+### Optimisation
+
+
+
+### Complexity
+
+
+
+### Code Snippets
+
+
+
+## Insertion Sort
+
+### Description
+
+
+### Advantages
+
+
+
+### When Should I use it
+
+
+
+### Optimisation
+
+
+
+### Complexity
+
+
+
+### Code Snippets
+
+
+
+## Selection Sort
+
+### Description
+
+
+### Advantages
+
+
+
+### When Should I use it
+
+
+
+### Optimisation
+
+
+
+### Complexity
+
+
+
+### Code Snippets
+
+
