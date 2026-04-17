@@ -7,6 +7,7 @@ A curated collection of essential algorithms and data structure techniques for t
 - [Overview](#overview)
 - [Sorting Algorithms](#sorting-algorithms)
 - [LeetCode Algorithms](#leetcode-algorithms)
+- [Dynamic Programming](#dynamic-programming)
 - [Repository Structure](#repository-structure)
 
 ## Overview
@@ -79,13 +80,45 @@ Key problem-solving techniques and patterns:
    - Best for: path existence, backtracking, puzzles
    - Uses recursion and stack
 
+## Dynamic Programming
+
+Documentation: [`dynamic-programming.md`](dynamic-programming.md)
+
+Optimization technique for solving problems with overlapping subproblems and optimal substructure:
+
+### When to Use:
+- **Overlapping Subproblems** - Same calculations needed multiple times
+- **Optimal Substructure** - Optimal solution built from optimal subproblems
+- **Exponential to Polynomial** - Convert O(2^n) brute-force to O(n) or better
+
+### Memoization Explained:
+- **Definition**: Caching function results to avoid redundant calculations
+- **Top-down approach**: Start with main problem, break into subproblems, cache results
+- **Trade-off**: Space cost (memory) for speed gain (time)
+- **Example**: Fibonacci without memoization = 15 calls; with memoization = 6 calls
+
+### Implementations:
+1. **Full Implementation** - Educational manual memoization with dictionary
+   - Shows cache management mechanics
+   - Global state for result storage
+   - Best for: Learning and understanding the concept
+
+2. **Production Implementation** - Pythonic decorator-based approach
+   - Uses `@functools.lru_cache(maxsize=None)`
+   - Automatic cache management
+   - Clean, maintainable code
+   - Best for: Real-world production code
+
+Both implementations use Fibonacci as the example, achieving O(n) time complexity.
+
 ## Repository Structure
 
 ```
 interview-learning/
-├── README.md              # This file
-├── sorting-algo.md        # Detailed sorting algorithm guide
-└── leetcode-algo.md       # Common interview problem patterns
+├── README.md                    # This file
+├── sorting-algo.md              # Detailed sorting algorithm guide
+├── leetcode-algo.md             # Common interview problem patterns
+└── dynamic-programming.md       # Dynamic programming with memoization
 ```
 
 ---
