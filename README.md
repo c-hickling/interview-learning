@@ -114,43 +114,39 @@ Both implementations use Fibonacci as the example, achieving O(n) time complexit
 
 ## Design Patterns
 
-Documentation: [`design-patterns.md`](design-patterns.md)
+Documentation: [`Design Patterns/`](Design%20Patterns/)
 
 Reusable solutions to common problems in software design, particularly useful for interviews to demonstrate architectural knowledge:
 
 ### Singleton Pattern
-
 **Purpose**: Restrict a class to a single instance while providing global access to that instance.
 
-### When to Use:
-- **Good Cases**: Database connections, configuration managers, loggers, thread pools, caching systems
-- **Avoid When**: Testing is critical, dependency injection is possible, or simplicity matters more
+**When to Use**: Database connections, configuration managers, loggers, thread pools, caching systems
+**When NOT to Use**: Testing is critical, dependency injection is possible, or simplicity matters more
 
-### Key Implementations:
-1. **Basic Singleton** - Simple `__new__` override
-   - ⚠️ NOT thread-safe
-   - Best for: Single-threaded applications
+**Key Implementations**:
+1. **Basic Singleton** - Simple `__new__` override (⚠️ NOT thread-safe)
+2. **Thread-Safe Singleton** - Double-checked locking (✅ Production-grade)
+3. **Decorator-Based** - Clean, Pythonic approach (✅ Recommended)
+4. **Module-Level Singleton** - Simplest Python approach (✅ Most Pythonic)
 
-2. **Thread-Safe Singleton** - Double-checked locking pattern
-   - ✅ Safe for multithreading
-   - Best for: Production multithreaded applications
+**Trade-offs**: Controlled access vs testing difficulties; guaranteed instance vs hidden dependencies
 
-3. **Decorator-Based** - Clean, Pythonic approach
-   - ✅ Readable and maintainable
-   - ✅ Separates concerns
-   - Best for: Modern Python code
+### Factory Method Pattern
+**Purpose**: Create objects without specifying exact classes, decoupling creation logic from client code.
 
-4. **Module-Level Singleton** - Simplest Python approach
-   - ✅ Leverages Python's module caching
-   - ✅ Most Pythonic
-   - Best for: Most Python applications
+**When to Use**: Multiple related types, runtime decisions, reducing dependencies, extensibility
+**When NOT to Use**: Single class only, simple cases, or when overengineering
 
-### Important Tradeoffs:
-- **Pros**: Controlled access, guaranteed single instance, resource efficiency
-- **Cons**: Testing difficulties, hidden dependencies, scalability concerns, violates dependency injection
-- **Pitfalls**: Thread-safety issues, inheritance problems, tight coupling to global state
+**Key Implementations**:
+1. **Simple Factory** - Static method with conditionals (Simplest)
+2. **Factory Method** - Inheritance-based (Most extensible)
+3. **Registry-Based** - Dynamic registration of types (Flexible)
+4. **Configuration-Driven** - Plugins loaded from config (External management)
 
-**Recommendation**: Use sparingly. Prefer dependency injection for better testability and loose coupling.
+**Trade-offs**: Loose coupling vs added complexity; extensibility vs indirection overhead
+
+**Recommendation**: Use for multiple object types. Prefer Dependency Injection when possible.
 
 ## Repository Structure
 
@@ -160,7 +156,9 @@ interview-learning/
 ├── sorting-algo.md              # Detailed sorting algorithm guide
 ├── leetcode-algo.md             # Common interview problem patterns
 ├── dynamic-programming.md       # Dynamic programming with memoization
-└── design-patterns.md           # Design patterns (Singleton, etc.)
+└── Design Patterns/             # Reusable design patterns
+    ├── singleton.md             # Singleton pattern
+    └── factory.md               # Factory method pattern
 ```
 
 ---
