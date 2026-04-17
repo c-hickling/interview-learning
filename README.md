@@ -1,6 +1,6 @@
 # Interview Learning Repository
 
-A curated collection of essential algorithms and data structure techniques for technical interview preparation.
+A curated collection of essential algorithms, data structure techniques, and design patterns for technical interview preparation.
 
 ## Table of Contents
 
@@ -8,6 +8,7 @@ A curated collection of essential algorithms and data structure techniques for t
 - [Sorting Algorithms](#sorting-algorithms)
 - [LeetCode Algorithms](#leetcode-algorithms)
 - [Dynamic Programming](#dynamic-programming)
+- [Design Patterns](#design-patterns)
 - [Repository Structure](#repository-structure)
 
 ## Overview
@@ -111,6 +112,46 @@ Optimization technique for solving problems with overlapping subproblems and opt
 
 Both implementations use Fibonacci as the example, achieving O(n) time complexity.
 
+## Design Patterns
+
+Documentation: [`design-patterns.md`](design-patterns.md)
+
+Reusable solutions to common problems in software design, particularly useful for interviews to demonstrate architectural knowledge:
+
+### Singleton Pattern
+
+**Purpose**: Restrict a class to a single instance while providing global access to that instance.
+
+### When to Use:
+- **Good Cases**: Database connections, configuration managers, loggers, thread pools, caching systems
+- **Avoid When**: Testing is critical, dependency injection is possible, or simplicity matters more
+
+### Key Implementations:
+1. **Basic Singleton** - Simple `__new__` override
+   - ⚠️ NOT thread-safe
+   - Best for: Single-threaded applications
+
+2. **Thread-Safe Singleton** - Double-checked locking pattern
+   - ✅ Safe for multithreading
+   - Best for: Production multithreaded applications
+
+3. **Decorator-Based** - Clean, Pythonic approach
+   - ✅ Readable and maintainable
+   - ✅ Separates concerns
+   - Best for: Modern Python code
+
+4. **Module-Level Singleton** - Simplest Python approach
+   - ✅ Leverages Python's module caching
+   - ✅ Most Pythonic
+   - Best for: Most Python applications
+
+### Important Tradeoffs:
+- **Pros**: Controlled access, guaranteed single instance, resource efficiency
+- **Cons**: Testing difficulties, hidden dependencies, scalability concerns, violates dependency injection
+- **Pitfalls**: Thread-safety issues, inheritance problems, tight coupling to global state
+
+**Recommendation**: Use sparingly. Prefer dependency injection for better testability and loose coupling.
+
 ## Repository Structure
 
 ```
@@ -118,7 +159,8 @@ interview-learning/
 ├── README.md                    # This file
 ├── sorting-algo.md              # Detailed sorting algorithm guide
 ├── leetcode-algo.md             # Common interview problem patterns
-└── dynamic-programming.md       # Dynamic programming with memoization
+├── dynamic-programming.md       # Dynamic programming with memoization
+└── design-patterns.md           # Design patterns (Singleton, etc.)
 ```
 
 ---
