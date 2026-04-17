@@ -1,5 +1,3 @@
-# Design Patterns
-
 # Singleton
 
 ## Description
