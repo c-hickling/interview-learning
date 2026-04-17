@@ -148,6 +148,22 @@ Reusable solutions to common problems in software design, particularly useful fo
 
 **Recommendation**: Use for multiple object types. Prefer Dependency Injection when possible.
 
+### Strategy Pattern
+**Purpose**: Define a family of algorithms, encapsulate each one, and make them interchangeable.
+
+**When to Use**: Multiple similar algorithms, runtime selection, replacing if/elif chains
+**When NOT to Use**: Single algorithm, simple conditionals, or when overengineering
+
+**Key Implementations**:
+1. **Simple Strategy** - Object-oriented with abstract base class (Clear, basic)
+2. **Factory-Based** - Automated strategy selection (Clean separation)
+3. **Registry-Based** - Dynamic registration of strategies (Flexible, extensible)
+4. **Functional** - Lambda/function-based strategies (Pythonic, minimal code)
+
+**Trade-offs**: Eliminates conditionals vs added complexity; flexibility vs indirection overhead
+
+**Real-World Examples**: Payment processing, sorting algorithms, compression, authentication, data export
+
 ## Repository Structure
 
 ```
@@ -158,7 +174,8 @@ interview-learning/
 ├── dynamic-programming.md       # Dynamic programming with memoization
 └── Design Patterns/             # Reusable design patterns
     ├── singleton.md             # Singleton pattern
-    └── factory.md               # Factory method pattern
+    ├── factory.md               # Factory method pattern
+    └── strategy.md              # Strategy pattern
 ```
 
 ---
