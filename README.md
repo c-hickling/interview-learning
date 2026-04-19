@@ -52,7 +52,7 @@ Core sorting techniques covering advantages, optimizations, and complexity analy
 
 ## LeetCode Algorithms
 
-Documentation: [`leetcode-algo.md`](leetcode-algo.md)
+Documentation: [`basic-algo.md`](basic-algo.md)
 
 Key problem-solving techniques and patterns:
 
@@ -188,7 +188,7 @@ Reusable solutions to common problems in software design, particularly useful fo
 interview-learning/
 ├── README.md                    # This file
 ├── sorting-algo.md              # Detailed sorting algorithm guide
-├── leetcode-algo.md             # Common interview problem patterns
+├── basic-algo.md                # Common interview problem patterns
 ├── dynamic-programming.md       # Dynamic programming with memoization
 └── Design Patterns/             # Reusable design patterns
     ├── singleton.md             # Singleton pattern

@@ -1,4 +1,4 @@
-# LeetCode Algorithms
+# Basic Algorithms
 
 ## Binary Search
 
