@@ -164,6 +164,24 @@ Reusable solutions to common problems in software design, particularly useful fo
 
 **Real-World Examples**: Payment processing, sorting algorithms, compression, authentication, data export
 
+### Observer Pattern
+**Purpose**: Define one-to-many dependency where state change in one object notifies all dependents automatically (Pub-Sub).
+
+**When to Use**: Event systems, MVC/MVVM architectures, real-time updates, change notifications, UI reactivity
+**When NOT to Use**: Tight coupling acceptable, few notifications needed, simple direct calls sufficient
+
+**Key Implementations**:
+1. **OOP-Based** - Abstract subject/observer classes (Explicit, structured)
+2. **Event-Based** - Callback functions, EventEmitter (Simple, Pythonic)
+3. **Decorator-Based** - @subscribe decorator syntax (Elegant, concise)
+4. **Property-Based** - Observable properties (Fine-grained control)
+
+**Trade-offs**: Loose coupling vs memory leak risks; scalability vs notification overhead; flexibility vs debugging difficulty
+
+**Common Pitfalls**: Memory leaks, observer order dependencies, circular dependencies, modifying during notification, unnecessary notifications
+
+**Real-World Examples**: GUI frameworks, stock market, game development, MVC/MVVM, React/Vue, Node.js EventEmitter
+
 ## Repository Structure
 
 ```
@@ -175,7 +193,8 @@ interview-learning/
 └── Design Patterns/             # Reusable design patterns
     ├── singleton.md             # Singleton pattern
     ├── factory.md               # Factory method pattern
-    └── strategy.md              # Strategy pattern
+    ├── strategy.md              # Strategy pattern
+    └── observer.md              # Observer/Subject pattern
 ```
 
 ---
